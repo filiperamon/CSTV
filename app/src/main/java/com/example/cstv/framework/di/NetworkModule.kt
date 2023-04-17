@@ -1,6 +1,6 @@
 package com.example.cstv.framework.di
 
-import com.example.core.data.network.interceptor.AuthorizationInterceptor
+import com.example.cstv.framework.network.interceptor.AuthorizationInterceptor
 import com.example.cstv.BuildConfig
 import dagger.Module
 import dagger.Provides
