@@ -23,18 +23,29 @@ class MatchViewHolder(
 
     fun bind(match: Match) {
         leagueName.text = match.league.name
-        textTeamHomeName.text = match.opponent.first().name
-        textTeamGuestName.text = match.opponent.last().name
 
-        Glide.with(itemView)
-            .load(match.opponent.first().imageUrl)
-            .fallback(R.drawable.background_img_error)
-            .into(imgTeamHome)
+        match.opponent?.let { opponents ->
+            if(opponents.isNotEmpty()){
 
-        Glide.with(itemView)
-            .load(match.opponent.last().imageUrl)
-            .fallback(R.drawable.background_img_error)
-            .into(imgTeamGuest)
+                opponents[0].let { homeTeam ->
+                    textTeamHomeName.text = homeTeam.name
+
+                    Glide.with(itemView)
+                        .load(homeTeam.imageUrl)
+                        .fallback(R.drawable.background_img_error)
+                        .into(imgTeamHome)
+                }
+
+                opponents[1].let {guestTeam ->
+                    textTeamGuestName.text = guestTeam.name
+
+                    Glide.with(itemView)
+                        .load(guestTeam.imageUrl)
+                        .fallback(R.drawable.background_img_error)
+                        .into(imgTeamGuest)
+                }
+            }
+        }
 
 
         imgLeague.load(match.league.imgUrl) {

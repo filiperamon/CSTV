@@ -1,5 +1,6 @@
 package com.example.cstv.framework.network.response
 
+import com.example.core.domain.model.Game
 import com.google.gson.annotations.SerializedName
 
 data class GamesResponse(
@@ -12,3 +13,13 @@ data class GamesResponse(
     val position: Long,
     val status: String,
 )
+
+fun GamesResponse.toGameModel(): Game {
+    return Game(
+        beginAt = this.beginAt,
+        complete = this.complete,
+        finished = this.finished,
+        id = this.id,
+        status = this.status,
+    )
+}

@@ -26,12 +26,12 @@ class MatchActivity : AppCompatActivity() {
         matchAdapter.submitList(
             listOf(
                 Match(
-                        League("Premier League", "https://i.annihil.us/u/prod/marvel/i/mg/c/e0/535fecbbb9784.jpg"),
+                        League("CS-GO", "https://cdn.pandascore.co/images/league/image/4854/european_pro_league_csgo_allmode-png"),
                         listOf(
-                            Opponent(1L, "https://i.annihil.us/u/prod/marvel/i/mg/c/e0/535fecbbb9784.jpg", "Arsenal"),
+                            Opponent(1L, "https://cdn.pandascore.co/images/team/image/127929/turow_logo_2.png", "Arsenal"),
                             Opponent(1L, "https://i.annihil.us/u/prod/marvel/i/mg/c/e0/535fecbbb9784.jpg", "Liverpol")
                         ),
-                        Game("", false, false, 1L, "")
+                        listOf(Game("", false, false, 1L, ""))
                     ),
                 )
             )

@@ -4,6 +4,6 @@ import com.google.gson.annotations.SerializedName
 
 data class Opponent(
     val id: Long,
-    val imageUrl: String,
+    val imageUrl: String? = "",
     val name: String,
 )
