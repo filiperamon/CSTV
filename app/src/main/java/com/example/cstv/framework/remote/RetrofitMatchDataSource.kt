@@ -9,7 +9,7 @@ class RetrofitMatchDataSource @Inject constructor(
     private val tvCsApi: TvCsApi
 ) : MatchRemoteDataSource<DataWrapperMatchResponse> {
 
-    override suspend fun fetchMath(queries: Map<String, String>): DataWrapperMatchResponse {
+    override suspend fun fetchMath(queries: Map<String, String>): ArrayList<DataWrapperMatchResponse> {
         return tvCsApi.getMatch(queries)
     }
 }

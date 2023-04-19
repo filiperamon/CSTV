@@ -70,7 +70,7 @@
                 app:layout_constraintStart_toStartOf="@+id/image_opponent_home"
                 app:layout_constraintTop_toBottomOf="@+id/image_opponent_home"
                 tools:ignore="SmallSp"
-                tools:text="Time 1" />
+                android:text="@string/default_team_one" />
 
             <TextView
                 android:id="@+id/textview_team_guest_name"
@@ -83,7 +83,7 @@
                 app:layout_constraintStart_toStartOf="@+id/image_opponent_guest"
                 app:layout_constraintTop_toBottomOf="@+id/image_opponent_guest"
                 tools:ignore="SmallSp"
-                tools:text="Time 2" />
+                android:text="@string/default_team_two" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

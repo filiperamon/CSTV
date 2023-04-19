@@ -1,12 +1,15 @@
 package com.example.cstv.presentation
 
 import android.os.Bundle
+import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
+import androidx.paging.LoadState
 import com.example.cstv.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -26,10 +29,11 @@ class MatchActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         initMatchAdapter()
+        observeInitialLoadingState()
 
         lifecycleScope.launch {
-            viewModel.matchPagingData("").collect { paginData ->
-                matchAdapter.submitData(paginData)
+            viewModel.matchPagingData("").collect { pagingData ->
+                matchAdapter.submitData(pagingData)
             }
         }
     }
@@ -38,6 +42,23 @@ class MatchActivity : AppCompatActivity() {
         binding.recyclerMatch.run {
             setHasFixedSize(true)
             adapter = matchAdapter
+        }
+    }
+
+    private fun observeInitialLoadingState() {
+        lifecycleScope.launch {
+            matchAdapter.loadStateFlow.collectLatest { loading ->
+                when (loading.refresh) {
+                    is LoadState.Loading -> {
+                        binding.recyclerMatch.visibility = View.GONE
+                        binding.imageLoading.visibility = View.VISIBLE
+                    }
+                    is LoadState.NotLoading -> {
+                        binding.recyclerMatch.visibility = View.VISIBLE
+                        binding.imageLoading.visibility = View.GONE
+                    }
+                }
+            }
         }
     }
 }

@@ -13,15 +13,18 @@ class MatchPagingSource(
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Match> {
         return try {
-            val size = params.key ?: 0
+            val size = params.key ?: 10
             val queries = hashMapOf(
-                "size" to size.toString()
+                "per-page" to size.toString(),
+                "sort" to "status",
+                "search" to "running",
+                "search" to "not_started"
             )
 
             val response = remoteDataSource.fetchMath(queries)
 
             LoadResult.Page(
-                data = response.result.map { it.toMatchModel() },
+                data = response.map { it.toMatchModel() },
                 null,
                 null
             )

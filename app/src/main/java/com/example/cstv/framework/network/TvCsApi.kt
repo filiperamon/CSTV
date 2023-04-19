@@ -9,5 +9,5 @@ interface TvCsApi {
     suspend fun getMatch(
         @QueryMap
         queries: Map<String, String>
-    ) : DataWrapperMatchResponse
+    ) : ArrayList<DataWrapperMatchResponse>
 }

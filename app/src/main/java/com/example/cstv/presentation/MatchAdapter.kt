@@ -2,7 +2,6 @@ package com.example.cstv.presentation
 
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import com.example.core.domain.model.Match
 
@@ -22,7 +21,7 @@ class MatchAdapter: PagingDataAdapter<Match, MatchViewHolder>(differCallback) {
                 oldItem: Match,
                 newItem: Match
             ): Boolean {
-                return oldItem.league == newItem.league
+                return oldItem.game == newItem.game
             }
 
             override fun areContentsTheSame(
