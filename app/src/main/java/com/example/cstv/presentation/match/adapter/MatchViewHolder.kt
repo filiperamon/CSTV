@@ -1,4 +1,4 @@
-package com.example.cstv.presentation
+package com.example.cstv.presentation.match.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -6,7 +6,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.core.domain.model.EStatus
 import com.example.core.domain.model.Match
-import com.example.core.domain.model.Opponent
 import com.example.cstv.R
 import com.example.cstv.databinding.ItemMatchBinding
 

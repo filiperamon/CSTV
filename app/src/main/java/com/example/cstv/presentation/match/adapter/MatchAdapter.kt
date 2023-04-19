@@ -1,4 +1,4 @@
-package com.example.cstv.presentation
+package com.example.cstv.presentation.match.adapter
 
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter

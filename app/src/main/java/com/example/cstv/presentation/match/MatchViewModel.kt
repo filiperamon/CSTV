@@ -1,4 +1,4 @@
-package com.example.cstv.presentation
+package com.example.cstv.presentation.match
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

@@ -1,4 +1,4 @@
-package com.example.cstv.presentation
+package com.example.cstv.presentation.match
 
 import android.os.Bundle
 import android.view.View
@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
 import com.example.cstv.databinding.ActivityMainBinding
+import com.example.cstv.presentation.match.adapter.MatchAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
