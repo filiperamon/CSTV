@@ -1,17 +1,21 @@
 package com.example.cstv.presentation
 
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import com.example.core.domain.model.Game
-import com.example.core.domain.model.League
-import com.example.core.domain.model.Match
-import com.example.core.domain.model.Opponent
+import androidx.lifecycle.lifecycleScope
 import com.example.cstv.databinding.ActivityMainBinding
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class MatchActivity : AppCompatActivity() {
 
     private var _binding: ActivityMainBinding? = null
     private val binding: ActivityMainBinding get() = _binding!!
+
+    private val viewModel: MatchViewModel by viewModels()
 
     private val matchAdapter = MatchAdapter()
 
@@ -23,18 +27,11 @@ class MatchActivity : AppCompatActivity() {
 
         initMatchAdapter()
 
-        matchAdapter.submitList(
-            listOf(
-                Match(
-                        League("CS-GO", "https://cdn.pandascore.co/images/league/image/4854/european_pro_league_csgo_allmode-png"),
-                        listOf(
-                            Opponent(1L, "https://cdn.pandascore.co/images/team/image/127929/turow_logo_2.png", "Arsenal"),
-                            Opponent(1L, "https://i.annihil.us/u/prod/marvel/i/mg/c/e0/535fecbbb9784.jpg", "Liverpol")
-                        ),
-                        listOf(Game("", false, false, 1L, ""))
-                    ),
-                )
-            )
+        lifecycleScope.launch {
+            viewModel.matchPagingData("").collect { paginData ->
+                matchAdapter.submitData(paginData)
+            }
+        }
     }
 
     private fun initMatchAdapter() {

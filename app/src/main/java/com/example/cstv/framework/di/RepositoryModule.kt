@@ -12,7 +12,7 @@ import dagger.hilt.components.SingletonComponent
 
 @Module
 @InstallIn(SingletonComponent::class)
-interface RepositoryModel {
+interface RepositoryModule {
 
     @Binds
     fun bindMatchRepository(repository: MatchRepositoryImpl) : MatchRepository

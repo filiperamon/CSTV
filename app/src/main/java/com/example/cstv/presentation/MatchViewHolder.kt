@@ -3,8 +3,6 @@ package com.example.cstv.presentation
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import coil.load
-import coil.transform.CircleCropTransformation
 import com.bumptech.glide.Glide
 import com.example.core.domain.model.Match
 import com.example.cstv.R
@@ -48,11 +46,11 @@ class MatchViewHolder(
         }
 
 
-        imgLeague.load(match.league.imgUrl) {
+/*        imgLeague.load(match.league.imgUrl) {
             crossfade(true)
             placeholder(R.drawable.background_img_error)
             transformations(CircleCropTransformation())
-        }
+        }*/
 
     }
 
