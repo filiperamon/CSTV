@@ -13,12 +13,11 @@ class MatchPagingSource(
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Match> {
         return try {
-            val size = params.key ?: 10
+            val nextPage = params.key ?: 0
+
             val queries = hashMapOf(
-                "per-page" to size.toString(),
-                "sort" to "status",
-                "search" to "running",
-                "search" to "not_started"
+                "sort" to "-status",
+                "page" to nextPage.toString(),
             )
 
             val response = remoteDataSource.fetchMath(queries)
@@ -26,7 +25,7 @@ class MatchPagingSource(
             LoadResult.Page(
                 data = response.map { it.toMatchModel() },
                 null,
-                null
+                nextPage + 1
             )
 
         } catch (exception: Exception) {
@@ -37,7 +36,7 @@ class MatchPagingSource(
     override fun getRefreshKey(state: PagingState<Int, Match>): Int? {
         return state.anchorPosition?.let { anchorPosition ->
             val anchorPage = state.closestPageToPosition(anchorPosition)
-            anchorPage?.nextKey?.plus(20) ?: anchorPage?.nextKey?.minus(20)
+            anchorPage?.nextKey?.plus(50) ?: anchorPage?.nextKey?.minus(50)
         }
     }
 }

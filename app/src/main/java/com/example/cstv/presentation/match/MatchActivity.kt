@@ -21,7 +21,7 @@ class MatchActivity : AppCompatActivity() {
 
     private val viewModel: MatchViewModel by viewModels()
 
-    private val matchAdapter = MatchAdapter()
+    private val matchAdapter = MatchAdapter(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,6 +30,11 @@ class MatchActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         initMatchAdapter()
+    }
+
+    override fun onResume() {
+        super.onResume()
+
         observeInitialLoadingState()
 
         lifecycleScope.launch {
@@ -58,6 +63,7 @@ class MatchActivity : AppCompatActivity() {
                         binding.recyclerMatch.visibility = View.VISIBLE
                         binding.imageLoading.visibility = View.GONE
                     }
+                    else -> {}
                 }
             }
         }

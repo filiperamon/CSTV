@@ -1,6 +1,7 @@
 package com.example.core.domain.model
 
 data class Match(
+    val id: Long,
     val league: League,
     val opponent: List<Opponent>,
     val game: List<Game?>,

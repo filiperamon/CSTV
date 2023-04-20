@@ -11,4 +11,5 @@
     <color name="background_primary_dark">#333333</color>
     <color name="card_background">#272639</color>
     <color name="color_online">#F42A35</color>
+    <color name="text_player_name">#6C6B7E</color>
 </resources>
