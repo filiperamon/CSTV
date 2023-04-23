@@ -1,13 +1,19 @@
 package com.example.cstv.presentation.match.players
 
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import com.example.core.domain.model.Match
 import com.example.cstv.databinding.ActivityMatchPlayersBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MatchPlayersActivity : AppCompatActivity() {
 
     private var _binding: ActivityMatchPlayersBinding? = null
     private val binding: ActivityMatchPlayersBinding get() = _binding!!
+
+    private val viewModel: MatchPlayerViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,11 +25,11 @@ class MatchPlayersActivity : AppCompatActivity() {
             onBackPressedDispatcher.onBackPressed()
         }
 
-        val matchId = getMatchExtras()
+        val match = getMatchExtras()
     }
 
-    private fun getMatchExtras(): Long {
-        return getExtras().getLong(MATCH_EXTRA)
+    private fun getMatchExtras(): Match {
+        return getExtras().getSerializable(MATCH_EXTRA) as Match
     }
 
     private fun getExtras(): Bundle {

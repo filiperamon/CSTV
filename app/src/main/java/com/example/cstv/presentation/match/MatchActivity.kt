@@ -30,10 +30,10 @@ class MatchActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         initMatchAdapter()
+        loadMatchApi()
     }
 
-    override fun onResume() {
-        super.onResume()
+    private fun loadMatchApi() {
 
         observeInitialLoadingState()
 

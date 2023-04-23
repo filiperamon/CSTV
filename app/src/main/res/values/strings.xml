@@ -7,4 +7,13 @@
     <string name="default_team_one">Time 1</string>
     <string name="default_team_two">Time 2</string>
     <string name="time_now">AGORA</string>
+    <string name="date_in_full">%1$s, %2$s</string>
+    <string name="today">Hoje</string>
+    <string name="sunday">Dom</string>
+    <string name="monday">Seg</string>
+    <string name="tuesday">Ter</string>
+    <string name="wednesday">Qua</string>
+    <string name="thursday">Qui</string>
+    <string name="friday">Sex</string>
+    <string name="saturday">Sáb</string>
 </resources>

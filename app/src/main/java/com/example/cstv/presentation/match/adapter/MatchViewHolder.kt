@@ -9,9 +9,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.core.domain.model.EStatus
 import com.example.core.domain.model.Match
+import com.example.cstv.utils.DateUtils
 import com.example.cstv.R
 import com.example.cstv.databinding.ItemMatchBinding
-import com.example.cstv.presentation.match.MatchActivity
 import com.example.cstv.presentation.match.players.MatchPlayersActivity
 
 class MatchViewHolder(
@@ -38,7 +38,7 @@ class MatchViewHolder(
             matchDate.text = context.getString(R.string.time_now)
         } else {
             matchDate.setBackgroundResource(R.drawable.bg_date_time)
-            matchDate.text = match.date
+            matchDate.text = DateUtils.formatDateInFull(context, match.date)
         }
 
         if(match.opponent.isNotEmpty()) {
@@ -72,10 +72,8 @@ class MatchViewHolder(
 
         cardMatch.setOnClickListener {
             val intent = Intent(context, MatchPlayersActivity::class.java)
-
             val bundle = Bundle()
             bundle.putLong(MatchPlayersActivity.MATCH_EXTRA, match.id)
-
             context.startActivity(intent)
         }
     }
