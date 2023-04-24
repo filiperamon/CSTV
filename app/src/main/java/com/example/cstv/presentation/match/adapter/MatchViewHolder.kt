@@ -12,7 +12,7 @@ import com.example.core.domain.model.Match
 import com.example.cstv.utils.DateUtils
 import com.example.cstv.R
 import com.example.cstv.databinding.ItemMatchBinding
-import com.example.cstv.presentation.match.players.MatchPlayersActivity
+import com.example.cstv.presentation.match.players.MatchTeamActivity
 
 class MatchViewHolder(
     itemMatchBinding: ItemMatchBinding,
@@ -71,9 +71,9 @@ class MatchViewHolder(
             .into(imgLeague)
 
         cardMatch.setOnClickListener {
-            val intent = Intent(context, MatchPlayersActivity::class.java)
+            val intent = Intent(context, MatchTeamActivity::class.java)
             val bundle = Bundle()
-            bundle.putLong(MatchPlayersActivity.MATCH_EXTRA, match.id)
+            bundle.putLong(MatchTeamActivity.MATCH_EXTRA, match.id)
             context.startActivity(intent)
         }
     }
