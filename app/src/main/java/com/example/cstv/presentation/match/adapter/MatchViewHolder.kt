@@ -13,6 +13,7 @@ import com.example.cstv.utils.DateUtils
 import com.example.cstv.R
 import com.example.cstv.databinding.ItemMatchBinding
 import com.example.cstv.presentation.match.players.MatchTeamActivity
+import com.example.cstv.utils.EMPTY
 
 class MatchViewHolder(
     itemMatchBinding: ItemMatchBinding,
@@ -28,10 +29,12 @@ class MatchViewHolder(
     private val matchDate           = itemMatchBinding.textviewDate
     private val cardMatch           = itemMatchBinding.cardCharacter
 
+    private var imageTeamA: String = String.EMPTY
+    private var imageTeamB: String = String.EMPTY
+
     fun bind(match: Match) {
 
         leagueName.text = "${match.league.name} + ${match.serie.name}"
-
 
         if(match.status == EStatus.RUNNING.value) {
             matchDate.setBackgroundResource(R.drawable.bg_date_online)
@@ -44,6 +47,7 @@ class MatchViewHolder(
         if(match.opponent.isNotEmpty()) {
 
             textTeamHomeName.text = match.opponent[0].name
+            imageTeamA = match.opponent[0].imageUrl ?: String.EMPTY
 
             Glide.with(itemView)
                 .load(match.opponent[0].imageUrl)
@@ -56,6 +60,7 @@ class MatchViewHolder(
         if(match.opponent.size > 1) {
 
             textTeamGuestName.text = match.opponent[1].name
+            imageTeamB = match.opponent[1].imageUrl ?: String.EMPTY
 
             Glide.with(itemView)
                 .load(match.opponent[1].imageUrl)
@@ -71,11 +76,22 @@ class MatchViewHolder(
             .into(imgLeague)
 
         cardMatch.setOnClickListener {
-            val intent = Intent(context, MatchTeamActivity::class.java)
-            val bundle = Bundle()
-            bundle.putLong(MatchTeamActivity.MATCH_EXTRA, match.id)
-            context.startActivity(intent)
+            routerToDetail()
         }
+    }
+
+    private fun routerToDetail() {
+
+        val intent = Intent(context, MatchTeamActivity::class.java)
+        val bundle = Bundle()
+
+        bundle.putString(MatchTeamActivity.LEAGUE_NAME, leagueName.text.toString())
+        bundle.putString(MatchTeamActivity.TEAM_A_NAME, textTeamHomeName.text.toString())
+        bundle.putString(MatchTeamActivity.TEAM_B_NAME, textTeamGuestName.text.toString())
+        bundle.putString(MatchTeamActivity.TEAM_A_IMAGE, imageTeamA)
+        bundle.putString(MatchTeamActivity.TEAM_B_IMAGE, imageTeamB)
+
+        context.startActivity(intent, bundle)
     }
 
     companion object {

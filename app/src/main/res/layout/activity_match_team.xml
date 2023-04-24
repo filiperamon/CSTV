@@ -119,7 +119,7 @@
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_players_home"
+        android:id="@+id/recycler_players"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:orientation="vertical"
@@ -128,7 +128,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_schedule_date"
-        tools:listitem="@layout/item_players_home" />
+        tools:listitem="@layout/item_teams" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_players_guest"
